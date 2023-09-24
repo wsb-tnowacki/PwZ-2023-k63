@@ -8,8 +8,8 @@
 @section('tresc')
     Treść dla informacji o nas
     <ol>
-        <?php foreach ($zadania ?? '' as $zadanie ) :?>
-        <li><?= $zadanie ?></li>
-        <?php endforeach; ?>
+        @foreach ($zadania as $zadanie)
+            <li>{{ $zadanie }}</li>
+        @endforeach
     </ol>
 @endsection
