@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>WSB</title>
+        <title>@yield('tytul', 'WSB')</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -49,10 +49,10 @@
                                     </svg>
                                 </div>
 
-                                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Start</h2>
+                                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">@yield('podtytul', 'Start')</h2>
 
                                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Treść startowa
+                                    @yield('tresc','Treść startowa')
                                 </p>
                             </div>
                         </div>
