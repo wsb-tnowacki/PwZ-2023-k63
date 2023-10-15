@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KontrolerStart;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,14 @@ use App\Http\Controllers\KontrolerStart;
     return view('ogolny.onas',['zadania' => $zadania]);
 })->name('onas');  */
 
-Route::get('/', [KontrolerStart::class, 'lista'])->name('start');
+/* Route::get('/', [KontrolerStart::class, 'lista'])->name('start');
 Route::get('/kontakt', [KontrolerStart::class, 'kontakt'])->name('kontakt');
-Route::get('/onas', [KontrolerStart::class, 'onas'])->name('onas');
+Route::get('/onas', [KontrolerStart::class, 'onas'])->name('onas'); */
+
+Route::controller(KontrolerStart::class)->group(function(){
+    Route::get('/','lista')->name('start');
+    Route::get('/kontakt',  'kontakt')->name('kontakt');
+    Route::get('/onas',  'onas')->name('onas');
+    /* Route::get('/onas/{id}/info/{onas}', 'test')->name('test'); */
+});
+Route::resource('posty',PostController::class);

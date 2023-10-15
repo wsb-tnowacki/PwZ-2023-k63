@@ -26,4 +26,9 @@ class KontrolerStart extends Controller
         //return view('ogolny.onas',['zadania' => $zadania]);
         return view('ogolny.onas')->with('zadania',$zadania);
     }
+    /* public function test( string $onas,string $id)
+    {
+        echo "<p>ID: $id <br> Onas: $onas</p>";
+        return ('OK');
+    } */
 }
