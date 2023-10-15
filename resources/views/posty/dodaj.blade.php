@@ -8,9 +8,7 @@
 @section('tresc')
     @if($errors->all())
     <div class="alert alert-danger">
-        @foreach ($errors->all() as $error)
-        <div>{{ $error }}</div>
-        @endforeach
+        Uzupełnij brakujące pola
     </div>
     @endif
     <form action="{{ route('posty.store') }}" method="post">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostStoreRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -28,18 +29,19 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    //public function store(Request $request)
+    public function store(PostStoreRequest $request)
     {
         //
         //dump($request);
         //dd($request);
        // $request->dump();
-       $request->validate([
+       /* $request->validate([
         'tytul' => 'required|min:3|max:255',
         'autor' => 'required|min:2',
         'email' => 'required|email:rfc,dns',
         'tresc' => 'required|min:6'
-       ]);
+       ]); */
         return redirect()->route('posty.index')->with('message', "Pomyślnie dodano post") ;
     }
 
