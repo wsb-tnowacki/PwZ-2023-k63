@@ -21,7 +21,7 @@ class PostController extends Controller
     public function create()
     {
         //
-        dump(request());
+       // dump(request());
         return view('posty.dodaj');
     }
 
@@ -40,7 +40,7 @@ class PostController extends Controller
         'email' => 'required|email:rfc,dns',
         'tresc' => 'required|min:6'
        ]);
-        return ('OK');
+        return redirect()->route('posty.index')->with('message', "Pomyślnie dodano post") ;
     }
 
     /**
