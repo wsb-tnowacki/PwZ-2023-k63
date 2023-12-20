@@ -104,6 +104,6 @@ class PostController extends Controller
         //echo "Destroy: $id";
         $post = Posty::findOrFail($id);
         $post->delete();
-        return redirect()->route('posty.index')->with('message', "Pomyślnie usunięto post") ;
+        return redirect()->route('posty.index')->with('message', "Pomyślnie usunięto post")->with('class', 'danger') ;
     }
 }
