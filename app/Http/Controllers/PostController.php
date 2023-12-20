@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posty = Posty::all();
+        $posty = Posty::all(); // <==> $posty = new Posty(); $posty->all();
         return view('posty.index', compact('posty'));
     }
 
@@ -67,15 +67,25 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        echo "Edit: $id";
+        //echo "Edit: $id";
+        $post = Posty::findOrFail($id);
+        return view('posty.zmien', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    //public function update(Request $request, string $id)
+    public function update(PostStoreRequest $request, string $id)
     {
-        echo "Update: $id";
+        //echo "Update: $id";
+        $post = Posty::findOrFail($id);
+        $post->tytul = request('tytul');
+        $post->autor = request('autor');
+        $post->email = request('email');
+        $post->tresc = request('tresc');
+        $post->update();
+        return redirect()->route('posty.index')->with('message', "Pomyślnie zmieniono post") ;
     }
 
     /**

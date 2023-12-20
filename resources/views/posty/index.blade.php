@@ -13,6 +13,7 @@
         <th scope="col">Tytuł</th>
         <th scope="col">Autor</th>
         <th scope="col">Data utworzenia</th>
+        <th scope="col">Akcja</th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,7 @@
         <td><a href="{{route('posty.show',$post->id)}}">{{$post['tytul']}}</a></td>
         <td>{{$post->autor}}</td>
         <td>{{date('j F Y H:i:s',strtotime($post->created_at))}}</td>
+        <td><a href="{{route('posty.edit', $post->id)}}"><button class="btn btn-success form-btn" type="button">E</button></a></td>
       </tr>
       @endforeach
       @else

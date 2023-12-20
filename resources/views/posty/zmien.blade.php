@@ -1,9 +1,9 @@
 @extends('layout')
 @section('tytul')
-    WSB - Szczegóły posta
+    WSB - Zmiana posta
 @endsection
 @section('podtytul')
-    Szczegóły posta
+    Zmiana posta
 @endsection
 @section('tresc')
     @if($errors->all())
@@ -11,11 +11,12 @@
         Uzupełnij brakujące pola
     </div>
     @endif
-    <form action="{{ route('posty.store') }}" method="post">
+    <form action="{{ route('posty.update', $post->id) }}" method="post">
     @csrf
+    @method('PUT')
         <div class="form-group">
             <label for="tytul">Tytuł</label>
-            <input type="text" class="form-control" name="tytul" id="tytul" placeholder="Podaj tytuł posta" value="{{ $post->tytul }}" disabled="disabled">
+            <input type="text" class="form-control" name="tytul" id="tytul" placeholder="Podaj tytuł posta" value="@if(old('tytul') !== null){{old('tytul')}}@else{{$post->tytul}}@endif">
             @if($errors->get('tytul'))
             <div class="alert alert-danger">
                 @foreach ($errors->get('tytul') as $error)
@@ -26,7 +27,7 @@
         </div>
         <div class="form-group">
             <label for="autor">Autor</label>
-            <input type="text" class="form-control" name="autor" id="autor" placeholder="Podaj autora posta" value="{{ $post->autor }}" disabled="disabled">
+            <input type="text" class="form-control" name="autor" id="autor" placeholder="Podaj autora posta" value="@if(old('autor') !== null){{old('autor')}}@else{{$post->autor}}@endif">
             @if($errors->get('autor'))
             <div class="alert alert-danger">
                 @foreach ($errors->get('autor') as $error)
@@ -37,7 +38,7 @@
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="Podaj email" value="{{ $post->email }}" disabled="disabled">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Podaj email" value="@if(old('email') !== null){{old('email')}}@else{{$post->email}}@endif">
             @if($errors->get('email'))
             <div class="alert alert-danger">
                 @foreach ($errors->get('email') as $error)
@@ -48,7 +49,7 @@
         </div>
         <div class="form-group">
             <label for="tresc">Treść</label>
-            <textarea class="form-control" name="tresc" id="tresc" rows="4" disabled="disabled">{{ $post->tresc }} </textarea>
+            <textarea class="form-control" name="tresc" id="tresc" rows="4">@if(old('tresc') !== null){{old('tresc')}}@else{{$post->tresc}}@endif</textarea>
             @if($errors->get('tresc'))
             <div class="alert alert-danger">
                 @foreach ($errors->get('tresc') as $error)
@@ -58,7 +59,6 @@
             @endif
         </div>
         <br>
-        <a href="{{route('posty.index')}}"><button class="btn btn-primary form-btn" type="button">Powrót do listy postów</button></a>
-        <a href="{{route('posty.edit', $post->id)}}"><button class="btn btn-success form-btn" type="button">Zmień posta</button></a>
+        <button class="btn btn-success form-btn" type="submit">Zmień posta</button>
     </form>
 @endsection
