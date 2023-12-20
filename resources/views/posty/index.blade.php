@@ -19,10 +19,11 @@
       </tr>
     </thead>
     <tbody>
+      @php($lp=1)
       @if($posty->count())
       @foreach ($posty as $post)
       <tr>
-        <th scope="row">{{$post['id']}}</th>
+        <th scope="row">{{ $lp++ }}</th>
         <td><a href="{{route('posty.show',$post->id)}}">{{$post['tytul']}}</a></td>
         <td>{{$post->autor}}</td>
         <td>{{date('j F Y H:i:s',strtotime($post->created_at))}}</td>
