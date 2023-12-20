@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
             <label for="autor">Autor</label>
-            <input type="text" class="form-control" name="autor" id="autor" placeholder="Podaj autora posta" value="@if(old('autor') !== null){{old('autor')}}@else{{$post->autor}}@endif">
+            <input type="text" class="form-control" name="autor" id="autor" placeholder="Podaj autora posta" value="@if(old('autor') !== null){{old('autor')}}@else{{$post->user->name}}@endif">
             @if($errors->get('autor'))
             <div class="alert alert-danger">
                 @foreach ($errors->get('autor') as $error)

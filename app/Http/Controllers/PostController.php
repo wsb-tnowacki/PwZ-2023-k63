@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostStoreRequest;
 use App\Models\Posty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -18,7 +19,7 @@ class PostController extends Controller
     public function index()
     {
         //$posty = Posty::all(); // <==> $posty = new Posty(); $posty->all();
-        $posty = Posty::paginate(8);
+        $posty = Posty::with('user')->paginate(8);
         return view('posty.index', compact('posty'));
     }
 
@@ -50,7 +51,8 @@ class PostController extends Controller
        ]); */
        $posty = new Posty();
        $posty->tytul = request('tytul');
-       $posty->autor = request('autor');
+       //$posty->autor = request('autor');
+       $posty->user_id = Auth::user()->id;
        $posty->email = request('email');
        $posty->tresc = request('tresc');
        $posty->save();
@@ -63,7 +65,7 @@ class PostController extends Controller
     public function show(string $id)
     {
         //echo "Show: $id";
-        $post = Posty::findOrFail($id);
+        $post = Posty::with('user')->findOrFail($id);
         return view('posty.post', compact('post'));
     }
 
@@ -73,7 +75,7 @@ class PostController extends Controller
     public function edit(string $id)
     {
         //echo "Edit: $id";
-        $post = Posty::findOrFail($id);
+        $post = Posty::with('user')->findOrFail($id);
         return view('posty.zmien', compact('post'));
     }
 
@@ -86,7 +88,8 @@ class PostController extends Controller
         //echo "Update: $id";
         $post = Posty::findOrFail($id);
         $post->tytul = request('tytul');
-        $post->autor = request('autor');
+        //$post->autor = request('autor');
+        $post->user_id = Auth::user()->id;
         $post->email = request('email');
         $post->tresc = request('tresc');
         $post->update();
