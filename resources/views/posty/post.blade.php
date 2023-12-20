@@ -11,8 +11,9 @@
         Uzupełnij brakujące pola
     </div>
     @endif
-    <form action="{{ route('posty.store') }}" method="post">
+    <form action="{{ route('posty.destroy', $post->id) }}" method="post">
     @csrf
+    @method('DELETE')
         <div class="form-group">
             <label for="tytul">Tytuł</label>
             <input type="text" class="form-control" name="tytul" id="tytul" placeholder="Podaj tytuł posta" value="{{ $post->tytul }}" disabled="disabled">
@@ -60,5 +61,6 @@
         <br>
         <a href="{{route('posty.index')}}"><button class="btn btn-primary form-btn" type="button">Powrót do listy postów</button></a>
         <a href="{{route('posty.edit', $post->id)}}"><button class="btn btn-success form-btn" type="button">Zmień posta</button></a>
+        <a href="{{route('posty.destroy', $post->id)}}"><button class="btn btn-danger form-btn" type="submit">Usuń posta</button></a>
     </form>
 @endsection
