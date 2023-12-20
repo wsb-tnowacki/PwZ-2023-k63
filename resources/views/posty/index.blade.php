@@ -20,6 +20,7 @@
     </thead>
     <tbody>
       @php($lp=1)
+      @php($lp=$posty->firstItem())
       @if($posty->count())
       @foreach ($posty as $post)
       <tr>
@@ -39,4 +40,5 @@
       @endif
     </tbody>
   </table>
+  {{ $posty->links() }}
 @endsection
