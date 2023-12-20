@@ -13,8 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
-        return view('posty.index');
+        $posty = Posty::all();
+        return view('posty.index', compact('posty'));
     }
 
     /**
@@ -44,12 +44,12 @@ class PostController extends Controller
         'tresc' => 'required|min:6'
        ]); */
        $posty = new Posty();
-       $posty = request('tytul');
-       $posty = request('autor');
-       $posty = request('email');
-       $posty = request('tresc');
+       $posty->tytul = request('tytul');
+       $posty->autor = request('autor');
+       $posty->email = request('email');
+       $posty->tresc = request('tresc');
        $posty->save();
-        return redirect()->route('posty.index')->with('message', "Pomyślnie dodano post") ;
+       return redirect()->route('posty.index')->with('message', "Pomyślnie dodano post") ;
     }
 
     /**
@@ -57,7 +57,9 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //echo "Show: $id";
+        $post = Posty::findOrFail($id);
+        return view('posty.post', compact('post'));
     }
 
     /**
@@ -65,7 +67,7 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        echo "Edit: $id";
     }
 
     /**
@@ -73,7 +75,7 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        echo "Update: $id";
     }
 
     /**
@@ -81,6 +83,6 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        echo "Destroy: $id";
     }
 }
