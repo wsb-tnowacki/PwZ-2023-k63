@@ -23,7 +23,9 @@
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     @auth
-                        <a href="{{ url('/home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
+                    <form action="{{route('logout')}}" method="POST">@csrf
+                        Witaj {{Auth::user()->name}}, <button class="btn btn-outline-secondary form-btn" type="submit">Wyloguj</button>
+                    </form>
                     @else
                         <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
@@ -56,7 +58,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <li><a class="dropdown-item" href="{{ route('posty.index') }}">Lista postów</a></li>
                               <li><hr class="dropdown-divider"></li>
-                              <li><a class="dropdown-item" href="{{ route('posty.create') }}">Dodaj post</a></li>
+                              @auth<li><a class="dropdown-item" href="{{ route('posty.create') }}">Dodaj post</a></li>@endauth
                             </ul>
                           </li>
                         </ul>

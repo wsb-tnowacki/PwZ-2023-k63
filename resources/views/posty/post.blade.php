@@ -60,7 +60,9 @@
         </div>
         <br>
         <a href="{{route('posty.index')}}"><button class="btn btn-primary form-btn" type="button">Powrót do listy postów</button></a>
+        @auth
         <a href="{{route('posty.edit', $post->id)}}"><button class="btn btn-success form-btn" type="button">Zmień posta</button></a>
         <a href="{{route('posty.destroy', $post->id)}}"><button class="btn btn-danger form-btn" type="submit">Usuń posta</button></a>
+        @endauth
     </form>
 @endsection

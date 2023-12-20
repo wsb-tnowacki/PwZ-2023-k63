@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KontrolerStart;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,6 @@ Route::controller(KontrolerStart::class)->group(function(){
     /* Route::get('/onas/{id}/info/{onas}', 'test')->name('test'); */
 });
 Route::resource('posty',PostController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
